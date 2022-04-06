@@ -16,7 +16,7 @@ namespace RGR1
     {
 
 
-        private double A = -(double) 2 / 3;
+        private double A = -(double)2 / 3;
         private double B = 6;
         private double epsilon = 1 / Math.Pow(10, 3);
 
@@ -26,21 +26,62 @@ namespace RGR1
             return x * x * x + 2 * x * x + x - 1;
         }
 
+        public void initCheckBox()
+        {
+            checkedListBox1.Items.Add("Равномерный поиск");
+            checkedListBox1.Items.Add("Алгоритм деления пополам");
+            checkedListBox1.Items.Add("Метод Фиббоначи");
+            checkedListBox1.Items.Add("Метод золотого сечения");
+
+            checkedListBox1.SetItemChecked(0, true);
+        }
+
+
+
+
+        private void checkedListBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int selectedIndex = checkedListBox1.SelectedIndex;
+
+            switch (selectedIndex)
+            {
+                case 0:
+                    uniSearch();
+                    break;
+                case 1:
+                    binarySearch();
+                    break;
+                case 2:
+                    Fibb();
+                    break;
+                case 3:
+                    goldSearch();
+                    break;
+            }
+
+            foreach (int checkboxIndex in checkedListBox1.CheckedIndices)
+            {
+                if (checkboxIndex != selectedIndex)
+                {
+                    checkedListBox1.SetItemChecked(checkboxIndex, false);
+                }
+            }
+        }
+
 
         public Form1()
         {
             InitializeComponent();
 
+            initCheckBox();
+
             uniSearch();
-            binarySearch();
-            Fibb();
-            goldSearch();
 
             double x = A;
 
             Bitmap bmp = new Bitmap(graphicView.Width, graphicView.Height);
             Graphics g = Graphics.FromImage(bmp);
-            SolidBrush myCorp = new SolidBrush(Color.DarkMagenta);
+            SolidBrush myCorp = new SolidBrush(Color.Black);
 
             double minY = double.MaxValue;
             double minX = A;
@@ -192,7 +233,6 @@ namespace RGR1
             double phi = (Math.Sqrt(5) - 1) / 2;
             return Math.Round((Math.Pow(1 / phi, n + 1) - Math.Pow(-phi, n + 1)) / Math.Sqrt(5));
         }
-
         
         private long fibbN()
         {
@@ -228,10 +268,7 @@ namespace RGR1
                 iters++;
             }
 
-            double minX = (localA + localB) / 2;
-
-            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1) + " minX: " + minX);
-
+            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
         }
 
 
