@@ -104,23 +104,14 @@ namespace RGR1
         }
 
 
-        public Form1()
+        private void drawGraphic(double xMin, double yMin)
         {
-            InitializeComponent();
-
-            initCheckBox();
-            initComboBox();
-
-            uniSearch();
-
-            double x = A;
-
             Bitmap bmp = new Bitmap(graphicView.Width, graphicView.Height);
             Graphics g = Graphics.FromImage(bmp);
             SolidBrush myCorp = new SolidBrush(Color.Black);
 
             double minY = double.MaxValue;
-            double minX = A;
+            double x = A;
 
             while (x <= B)
             {
@@ -134,14 +125,25 @@ namespace RGR1
                 if (y < minY)
                 {
                     minY = y;
-                    minX = x;
                 }
             }
 
-            Debug.WriteLine(minY);
-            Debug.WriteLine(minX);
+             myCorp = new SolidBrush(Color.Chartreuse);
+
+            g.FillEllipse(myCorp, (int)(xMin * 70) + 96, (int)(yMin * -1) + 496, 8, 8);
 
             graphicView.Image = bmp;
+        }
+
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            initCheckBox();
+            initComboBox();
+
+            uniSearch();
         }
 
 
@@ -223,6 +225,8 @@ namespace RGR1
 
             y1View.Text = yValues[yValues.Count - 1].ToString();
             y2View.Text = yValues[yValues.Count - 1].ToString();
+
+            drawGraphic(localA, yValues[yValues.Count - 1]);
         }
 
 
@@ -271,6 +275,8 @@ namespace RGR1
 
             y1View.Text    = y1.ToString();
             y2View.Text    = y2.ToString();
+
+            drawGraphic(localA, y1);
         }
 
         
@@ -317,6 +323,8 @@ namespace RGR1
                 iters++;
             }
 
+            //ADD STEP TWO!!!!!
+
             itersView.Text = (iters - 1).ToString();
             x1View.Text    = localA.ToString();
             x2View.Text    = localB.ToString();
@@ -325,6 +333,8 @@ namespace RGR1
             y2View.Text    = y2.ToString();
 
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
+
+            drawGraphic(localA, y1);
         }
 
 
@@ -371,6 +381,8 @@ namespace RGR1
 
             y1View.Text    = y1.ToString();
             y2View.Text    = y2.ToString();
+
+            drawGraphic(localA, y1);
         }
     }
 }
