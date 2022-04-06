@@ -304,7 +304,7 @@ namespace RGR1
             double y1 = 0;
             double y2 = 0;
 
-            while (iters <= n)
+            while (iters < n)
             {
                 double x1 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters - 1) / getFibbValue(n - iters + 1)));
                 double x2 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters) / getFibbValue(n - iters + 1)));
@@ -323,7 +323,18 @@ namespace RGR1
                 iters++;
             }
 
-            //ADD STEP TWO!!!!!
+            double deltaX = (double) ((localB - localA) / 10);
+
+            double xn     = localA + deltaX;
+            double funcXn = func(xn);
+
+            if(funcXn > (y2 - y1) / 2)
+            {
+                localA = xn;
+            } else
+            {
+                localB = xn;
+            }
 
             itersView.Text = (iters - 1).ToString();
             x1View.Text    = localA.ToString();
