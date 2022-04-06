@@ -18,13 +18,30 @@ namespace RGR1
 
         private double A = -(double)2 / 3;
         private double B = 6;
-        private double epsilon = 1 / Math.Pow(10, 3);
+        private double epsilon = countEpsilon(3);
 
+
+        public static double countEpsilon(long degree)
+        {
+            return 1 / Math.Pow(10, degree);
+        }
 
         public double func(double x)
         {
             return x * x * x + 2 * x * x + x - 1;
         }
+
+
+        public void initComboBox()
+        {
+            comboBox1.Items.Add("10^-3");
+            comboBox1.Items.Add("10^-6");
+            comboBox1.Items.Add("10^-9");
+            comboBox1.Items.Add("10^-12");
+
+            comboBox1.SelectedIndex = 0;
+        }
+
 
         public void initCheckBox()
         {
@@ -37,6 +54,24 @@ namespace RGR1
         }
 
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    epsilon = countEpsilon(3);
+                    break;
+                case 1:
+                    epsilon = countEpsilon(6);
+                    break;
+                case 2:
+                    epsilon = countEpsilon(9);
+                    break;
+                case 3:
+                    epsilon = countEpsilon(12);
+                    break;
+            }
+        }
 
 
         private void checkedListBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -74,6 +109,7 @@ namespace RGR1
             InitializeComponent();
 
             initCheckBox();
+            initComboBox();
 
             uniSearch();
 
@@ -225,8 +261,6 @@ namespace RGR1
                 {
                     break;
                 }
-
-                
             }
 
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters));
@@ -234,6 +268,7 @@ namespace RGR1
             itersView.Text = iters.ToString();
             x1View.Text    = localA.ToString();
             x2View.Text    = localB.ToString();
+
             y1View.Text    = y1.ToString();
             y2View.Text    = y2.ToString();
         }
@@ -285,6 +320,7 @@ namespace RGR1
             itersView.Text = (iters - 1).ToString();
             x1View.Text    = localA.ToString();
             x2View.Text    = localB.ToString();
+
             y1View.Text    = y1.ToString();
             y2View.Text    = y2.ToString();
 
@@ -332,14 +368,9 @@ namespace RGR1
             itersView.Text = iters.ToString();
             x1View.Text    = localA.ToString();
             x2View.Text    = localB.ToString();
+
             y1View.Text    = y1.ToString();
             y2View.Text    = y2.ToString();
-        }
-
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
