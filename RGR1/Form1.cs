@@ -116,20 +116,16 @@ namespace RGR1
             double localB = B;
             int iters = 1;
 
+            List<double> yValues = new List<double>();
+
             while (true)
             {
-
-                List<double> yValues = new List<double>();
 
                 //first 1
                 double L = 0;
                 double lx = 0;
                 double delta = (double)localB - localA;
 
-                //while (delta % lx != 0)
-                //{
-                //    lx += Math.Pow(0.05, iters);
-                //}
 
                 lx = Math.Pow(0.1, iters);
 
@@ -185,6 +181,12 @@ namespace RGR1
 
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
 
+            itersView.Text = (iters - 1).ToString();
+            x1View.Text    = localA.ToString();
+            x2View.Text    = localB.ToString();
+
+            y1View.Text = yValues[yValues.Count - 1].ToString();
+            y2View.Text = yValues[yValues.Count - 1].ToString();
         }
 
 
@@ -195,18 +197,21 @@ namespace RGR1
             double localB = B;
             double iters = 0;
 
+            double y1 = 0;
+            double y2 = 0;
+
             while (true)
             {
 
                 double x0 = (double)(localB + localA) / 2;
 
-                double x01 = (double)(localB + x0) / 2;
-                double x02 = (double)(x0 + localA) / 2;
+                double x1 = (double)(localB + x0) / 2;
+                double x2 = (double)(x0 + localA) / 2;
 
-                double y01 = func(x01);
-                double y02 = func(x02);
+                y1 = func(x1);
+                y2 = func(x2);
 
-                if(y01 < y02)
+                if(y1 < y2)
                 {
                     localA = x0;
                 } else
@@ -224,7 +229,13 @@ namespace RGR1
                 
             }
 
-            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
+            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters));
+
+            itersView.Text = iters.ToString();
+            x1View.Text    = localA.ToString();
+            x2View.Text    = localB.ToString();
+            y1View.Text    = y1.ToString();
+            y2View.Text    = y2.ToString();
         }
 
         
@@ -249,13 +260,16 @@ namespace RGR1
             long n = fibbN();
             long iters = 1;
 
+            double y1 = 0;
+            double y2 = 0;
+
             while (iters <= n)
             {
                 double x1 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters - 1) / getFibbValue(n - iters + 1)));
                 double x2 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters) / getFibbValue(n - iters + 1)));
 
-                double y1 = func(x1);
-                double y2 = func(x2);
+                y1 = func(x1);
+                y2 = func(x2);
 
                 if(y1 < y2)
                 {
@@ -268,6 +282,12 @@ namespace RGR1
                 iters++;
             }
 
+            itersView.Text = (iters - 1).ToString();
+            x1View.Text    = localA.ToString();
+            x2View.Text    = localB.ToString();
+            y1View.Text    = y1.ToString();
+            y2View.Text    = y2.ToString();
+
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
         }
 
@@ -279,13 +299,16 @@ namespace RGR1
             double tetta = (double) (Math.Sqrt(5) - 1) / 2;
             double iters = 0;
 
+            double y1 = 0;
+            double y2 = 0;
+
             while (true)
             {
                 double xr1 = localB - (localB - localA) * tetta;
                 double xr2 = localA + (localB - localA) * tetta;
 
-                double y1 = func(xr1);
-                double y2 = func(xr2);
+                y1 = func(xr1);
+                y2 = func(xr2);
 
                 if (y1 < y2)
                 {
@@ -304,7 +327,19 @@ namespace RGR1
                 }
             }
 
-            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
+            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters));
+
+            itersView.Text = iters.ToString();
+            x1View.Text    = localA.ToString();
+            x2View.Text    = localB.ToString();
+            y1View.Text    = y1.ToString();
+            y2View.Text    = y2.ToString();
+        }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
