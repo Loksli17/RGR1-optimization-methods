@@ -33,6 +33,7 @@ namespace RGR1
 
             uniSearch();
             binarySearch();
+            Fibb();
             goldSearch();
 
             double x = A;
@@ -185,19 +186,52 @@ namespace RGR1
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
         }
 
+        
+        private double getFibbValue(long n)
+        {
+            double phi = (Math.Sqrt(5) - 1) / 2;
+            return Math.Round((Math.Pow(1 / phi, n + 1) - Math.Pow(-phi, n + 1)) / Math.Sqrt(5));
+        }
+
+        
+        private long fibbN()
+        {
+            double phi = (Math.Sqrt(5) - 1) / 2;
+            return (long) Math.Round(Math.Log((Math.Sqrt(5) * (B - A)) / epsilon, 1 / phi) - 1);
+        }
+
         public void Fibb()
         {
-
-            int r = 1;
 
             double localA = A;
             double localB = B;
 
+            long n = fibbN();
+            long iters = 1;
 
-            while (true)
+            while (iters <= n)
             {
-                //double x1 = localA + (localB - localA) * ();
+                double x1 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters - 1) / getFibbValue(n - iters + 1)));
+                double x2 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters) / getFibbValue(n - iters + 1)));
+
+                double y1 = func(x1);
+                double y2 = func(x2);
+
+                if(y1 < y2)
+                {
+                    localB = x2;
+                } else
+                {
+                    localA = x1;
+                }
+
+                iters++;
             }
+
+            double minX = (localA + localB) / 2;
+
+            Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1) + " minX: " + minX);
+
         }
 
 
@@ -235,7 +269,5 @@ namespace RGR1
 
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
         }
-
-            
     }
 }

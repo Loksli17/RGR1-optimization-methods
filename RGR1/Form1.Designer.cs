@@ -30,6 +30,7 @@ namespace RGR1
         private void InitializeComponent()
         {
             this.graphicView = new System.Windows.Forms.PictureBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.graphicView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,11 +43,20 @@ namespace RGR1
             this.graphicView.TabIndex = 0;
             this.graphicView.TabStop = false;
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(827, 12);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(186, 148);
+            this.checkedListBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1122, 558);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.graphicView);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -58,6 +68,7 @@ namespace RGR1
         #endregion
 
         private System.Windows.Forms.PictureBox graphicView;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 
