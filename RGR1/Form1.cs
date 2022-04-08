@@ -31,6 +31,16 @@ namespace RGR1
             return x * x * x + 2 * x * x + x - 1;
         }
 
+        public int normalX(double coordX)
+        {
+            return (int)((coordX) * 70) + 150;
+        }
+
+        public int normalY(double coordY)
+        {
+            return (int)(coordY * -1) + 400;
+        }
+
 
         public void initComboBox()
         {
@@ -110,15 +120,46 @@ namespace RGR1
             Graphics g = Graphics.FromImage(bmp);
             SolidBrush myCorp = new SolidBrush(Color.Black);
 
+            Point p1 = new Point(normalX(-1), normalY(0));
+            Point p2 = new Point(normalX(B + 1), normalY(0));
+            Pen pen = new Pen(myCorp);
+            pen.Width = 2;
+            g.DrawLine(pen, p1, p2);
+
+            p1 = new Point(normalX(0), normalY(0));
+            p2 = new Point(normalX(0), normalY(func(B)));
+            g.DrawLine(pen, p1, p2);
+
+            for(int i = -1; i < B + 1; i++)
+            {
+                p1 = new Point(normalX(i), normalY(-5));
+                p2 = new Point(normalX(i), normalY(5));
+                g.DrawLine(pen, p1, p2);
+
+                Font font = new Font("Arial", 11, FontStyle.Regular);
+
+                g.DrawString(i.ToString(), font, myCorp, new PointF(normalX(i) - 6, normalY(-10)));
+            }
+
+            p1 = new Point(normalX(B + 0.5), normalY(-5));
+            p2 = new Point(normalX(B + 1), normalY(0));
+            g.DrawLine(pen, p1, p2);
+
+            p1 = new Point(normalX(B + 1), normalY(0));
+            p2 = new Point(normalX(B + 0.5), normalY(5));
+            g.DrawLine(pen, p1, p2);
+
             double minY = double.MaxValue;
             double x = A;
+
+            myCorp.Color = Color.Coral;
 
             while (x <= B)
             {
 
                 double y = func(x);
 
-                g.FillEllipse(myCorp, (int)(x * 70) + 100, (int)(y * -1) + 500, 2, 2);
+                g.FillEllipse(myCorp, normalX(x), normalY(y), 4, 4);
 
                 x += 0.00001;
 
@@ -128,9 +169,9 @@ namespace RGR1
                 }
             }
 
-             myCorp = new SolidBrush(Color.Chartreuse);
+            myCorp.Color = Color.Chartreuse;
 
-            g.FillEllipse(myCorp, (int)(xMin * 70) + 96, (int)(yMin * -1) + 496, 8, 8);
+            g.FillEllipse(myCorp, normalX(xMin) - 3, normalY(yMin) - 3, 10, 10);
 
             graphicView.Image = bmp;
         }
@@ -371,7 +412,8 @@ namespace RGR1
                 {
                     //localA = localA;
                     localB = xr2;
-                } else
+                }
+                else
                 {
                     localA = xr1;
                 }
