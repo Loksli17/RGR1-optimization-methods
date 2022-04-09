@@ -126,10 +126,11 @@ namespace RGR1
             pen.Width = 2;
             g.DrawLine(pen, p1, p2);
 
-            p1 = new Point(normalX(0), normalY(0));
+            p1 = new Point(normalX(0), normalY(0) + 40);
             p2 = new Point(normalX(0), normalY(func(B)));
             g.DrawLine(pen, p1, p2);
 
+            //x axis
             for(int i = -1; i < B + 1; i++)
             {
                 p1 = new Point(normalX(i), normalY(-5));
@@ -138,16 +139,51 @@ namespace RGR1
 
                 Font font = new Font("Arial", 11, FontStyle.Regular);
 
-                g.DrawString(i.ToString(), font, myCorp, new PointF(normalX(i) - 6, normalY(-10)));
+                if(i != 0)
+                {
+                    g.DrawString(i.ToString(), font, myCorp, new PointF(normalX(i) - 6, normalY(-10)));
+                } else
+                {
+                    g.DrawString(i.ToString(), font, myCorp, new PointF(normalX(i) + 10, normalY(-10)));
+                }
+
+                
             }
 
-            p1 = new Point(normalX(B + 0.5), normalY(-5));
+
+            for (int i = -40; i < 280; i += 40)
+            {
+                p1 = new Point(-5 + 150, normalY(i));
+                p2 = new Point(5 + 150, normalY(i));
+                g.DrawLine(pen, p1, p2);
+
+                Font font = new Font("Arial", 11, FontStyle.Regular);
+
+                if(i != 0)
+                {
+                    g.DrawString(i.ToString(), font, myCorp, new PointF(-40 + 150, normalY(i) - 10));
+                }
+            }
+
+
+            //first arrow
+            p1 = new Point(normalX(B + 0.5), normalY(-6));
             p2 = new Point(normalX(B + 1), normalY(0));
             g.DrawLine(pen, p1, p2);
 
             p1 = new Point(normalX(B + 1), normalY(0));
-            p2 = new Point(normalX(B + 0.5), normalY(5));
+            p2 = new Point(normalX(B + 0.5), normalY(6));
             g.DrawLine(pen, p1, p2);
+                
+            //second arrow
+            p1 = new Point((-6) + 150, normalY(func(B - 0.25)));
+            p2 = new Point(150, normalY(func(B)));
+            g.DrawLine(pen, p1, p2);
+
+            p1 = new Point(150, normalY(func(B)));
+            p2 = new Point((6) + 150, normalY(func(B - 0.25)));
+            g.DrawLine(pen, p1, p2);
+
 
             double minY = double.MaxValue;
             double x = A;
