@@ -57,7 +57,7 @@ namespace RGR1
         {
             checkedListBox1.Items.Add("Равномерный поиск");
             checkedListBox1.Items.Add("Алгоритм деления пополам");
-            checkedListBox1.Items.Add("Метод Фиббоначи");
+            checkedListBox1.Items.Add("Метод Фибоначчи");
             checkedListBox1.Items.Add("Метод золотого сечения");
 
             checkedListBox1.SetItemChecked(0, true);
@@ -97,7 +97,7 @@ namespace RGR1
                     binarySearch();
                     break;
                 case 2:
-                    Fibb();
+                    Fib();
                     break;
                 case 3:
                     goldSearch();
@@ -233,18 +233,21 @@ namespace RGR1
 
             List<double> yValues = new List<double>();
 
+            double L = 0;
+
+
             while (true)
             {
 
                 //first 1
-                double L = 0;
+                
                 double lx = 0;
                 double delta = (double)localB - localA;
 
 
                 lx = Math.Pow(0.1, iters);
 
-                L = delta % lx;
+                L = delta / lx;
 
 
                 //step 2
@@ -304,6 +307,15 @@ namespace RGR1
             y2View.Text = yValues[yValues.Count - 1].ToString();
 
             drawGraphic(localA, yValues[yValues.Count - 1]);
+
+            double lx1 = Math.Pow(0.1, 1);
+
+            L = (B - A) / lx1;
+            Debug.WriteLine(L);
+            double predictIters = Math.Log(epsilon / (B - A), 2 / L);
+            Debug.WriteLine(predictIters);
+
+            predictItersView.Text = predictIters.ToString();
         }
 
 
@@ -354,28 +366,33 @@ namespace RGR1
             y2View.Text    = y2.ToString();
 
             drawGraphic(localA, y1);
+
+            double predictIters = Math.Log((B - A) / epsilon, 2);
+            Debug.WriteLine(predictIters);
+
+            predictItersView.Text = predictIters.ToString();
         }
 
         
-        private double getFibbValue(long n)
+        private double getFibValue(long n)
         {
             double phi = (Math.Sqrt(5) - 1) / 2;
             return Math.Round((Math.Pow(1 / phi, n + 1) - Math.Pow(-phi, n + 1)) / Math.Sqrt(5));
         }
         
-        private long fibbN()
+        private long fibN()
         {
             double phi = (Math.Sqrt(5) - 1) / 2;
             return (long) Math.Round(Math.Log((Math.Sqrt(5) * (B - A)) / epsilon, 1 / phi) - 1);
         }
 
-        public void Fibb()
+        public void Fib()
         {
 
             double localA = A;
             double localB = B;
 
-            long n = fibbN();
+            long n = fibN();
             long iters = 1;
 
             double y1 = 0;
@@ -383,8 +400,8 @@ namespace RGR1
 
             while (iters < n)
             {
-                double x1 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters - 1) / getFibbValue(n - iters + 1)));
-                double x2 = localA + ((double) localB - localA) * ((double) (getFibbValue(n - iters) / getFibbValue(n - iters + 1)));
+                double x1 = localA + ((double) localB - localA) * ((double) (getFibValue(n - iters - 1) / getFibValue(n - iters + 1)));
+                double x2 = localA + ((double) localB - localA) * ((double) (getFibValue(n - iters) / getFibValue(n - iters + 1)));
 
                 y1 = func(x1);
                 y2 = func(x2);
@@ -472,6 +489,9 @@ namespace RGR1
             y2View.Text    = y2.ToString();
 
             drawGraphic(localA, y1);
+
+            double predictIters = Math.Log(epsilon / (B - A), tetta);
+            predictItersView.Text = predictIters.ToString();
         }
     }
 }

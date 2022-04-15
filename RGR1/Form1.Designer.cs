@@ -43,6 +43,8 @@ namespace RGR1
             this.y1View = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.y2View = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.predictItersView = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.graphicView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +79,7 @@ namespace RGR1
             // itersView
             // 
             this.itersView.AutoSize = true;
-            this.itersView.Location = new System.Drawing.Point(973, 255);
+            this.itersView.Location = new System.Drawing.Point(1030, 256);
             this.itersView.Name = "itersView";
             this.itersView.Size = new System.Drawing.Size(38, 15);
             this.itersView.TabIndex = 4;
@@ -86,7 +88,7 @@ namespace RGR1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(826, 296);
+            this.label3.Location = new System.Drawing.Point(826, 405);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(19, 15);
             this.label3.TabIndex = 5;
@@ -95,7 +97,7 @@ namespace RGR1
             // x1View
             // 
             this.x1View.AutoSize = true;
-            this.x1View.Location = new System.Drawing.Point(973, 296);
+            this.x1View.Location = new System.Drawing.Point(973, 405);
             this.x1View.Name = "x1View";
             this.x1View.Size = new System.Drawing.Size(38, 15);
             this.x1View.TabIndex = 6;
@@ -104,7 +106,7 @@ namespace RGR1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(826, 335);
+            this.label5.Location = new System.Drawing.Point(826, 444);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(19, 15);
             this.label5.TabIndex = 7;
@@ -113,7 +115,7 @@ namespace RGR1
             // x2View
             // 
             this.x2View.AutoSize = true;
-            this.x2View.Location = new System.Drawing.Point(973, 335);
+            this.x2View.Location = new System.Drawing.Point(973, 444);
             this.x2View.Name = "x2View";
             this.x2View.Size = new System.Drawing.Size(38, 15);
             this.x2View.TabIndex = 8;
@@ -140,7 +142,7 @@ namespace RGR1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(826, 372);
+            this.label2.Location = new System.Drawing.Point(826, 481);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 11;
@@ -149,7 +151,7 @@ namespace RGR1
             // y1View
             // 
             this.y1View.AutoSize = true;
-            this.y1View.Location = new System.Drawing.Point(973, 372);
+            this.y1View.Location = new System.Drawing.Point(973, 481);
             this.y1View.Name = "y1View";
             this.y1View.Size = new System.Drawing.Size(38, 15);
             this.y1View.TabIndex = 12;
@@ -158,7 +160,7 @@ namespace RGR1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(827, 417);
+            this.label4.Location = new System.Drawing.Point(827, 526);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 15);
             this.label4.TabIndex = 13;
@@ -167,17 +169,37 @@ namespace RGR1
             // y2View
             // 
             this.y2View.AutoSize = true;
-            this.y2View.Location = new System.Drawing.Point(973, 417);
+            this.y2View.Location = new System.Drawing.Point(973, 526);
             this.y2View.Name = "y2View";
             this.y2View.Size = new System.Drawing.Size(38, 15);
             this.y2View.TabIndex = 14;
             this.y2View.Text = "label4";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(826, 288);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(197, 15);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Предполагаемое кол-во итераций";
+            // 
+            // predictItersView
+            // 
+            this.predictItersView.AutoSize = true;
+            this.predictItersView.Location = new System.Drawing.Point(1030, 288);
+            this.predictItersView.Name = "predictItersView";
+            this.predictItersView.Size = new System.Drawing.Size(38, 15);
+            this.predictItersView.TabIndex = 16;
+            this.predictItersView.Text = "label2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1122, 558);
+            this.Controls.Add(this.predictItersView);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.y2View);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.y1View);
@@ -216,6 +238,8 @@ namespace RGR1
         private System.Windows.Forms.Label y1View;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label y2View;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label predictItersView;
     }
 }
 
