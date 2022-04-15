@@ -233,7 +233,7 @@ namespace RGR1
 
             List<double> yValues = new List<double>();
 
-            double L = 0;
+            double L = 60;
 
 
             while (true)
@@ -245,10 +245,11 @@ namespace RGR1
                 double delta = (double)localB - localA;
 
 
-                lx = Math.Pow(0.1, iters);
+                //lx = Math.Pow(0.1, iters);
 
-                L = delta / lx;
+                //L = delta / lx;
 
+                lx = delta / L;
 
                 //step 2
                 double x = localA;
@@ -440,6 +441,8 @@ namespace RGR1
             Debug.WriteLine("END: " + "A:" + localA + " B:" + localB + " iters:" + (iters - 1));
 
             drawGraphic(localA, y1);
+
+            predictItersView.Text = "none";
         }
 
 
